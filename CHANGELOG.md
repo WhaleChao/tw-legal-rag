@@ -1,5 +1,21 @@
 # Changelog
 
+## Data coverage update (2026-09-13)
+
+Documentation only; no package or API change (still v2.3.0).
+
+- **Court judgments: unchanged at 22,578,975.** No new upstream batches were
+  ingested in this window, so the court-level and case-type tables are
+  identical to the 2026-09-08 snapshot.
+- **Administrative interpretations: 88,392 to 88,421** across the same 90
+  agencies. Eight agencies gained between one and eleven records
+  (經濟部智慧財產局 7,162 to 7,173, 勞動部 7,155 to 7,164, 經濟部 6,671 to
+  6,674, 內政部 2,665 to 2,667, and one each for 財政部, 農業部,
+  原住民族委員會 and 文化部).
+- **Interpretation validity ledger: 69,483 to 69,509.**
+- Statute, repealed-instrument, labor-decision and appeal-chain counts are
+  unchanged.
+
 ## Data coverage update (2026-09-08)
 
 Documentation only; no package or API change (still v2.3.0).
