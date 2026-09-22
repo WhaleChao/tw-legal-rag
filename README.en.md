@@ -25,21 +25,21 @@ guarantee semantic faithfulness of third-party model outputs. Its built-in
 citation check only verifies whether cited judgments belong to the retrieved
 bundle.
 
-## Data coverage (as of 2026-09-13, counted directly from the production database)
+## Data coverage (as of 2026-09-22, counted directly from the production database)
 
 | Corpus | Size | Access |
 |---|---:|---|
-| **Court judgments** (all Taiwan court levels) | **22,578,975** | semantic + lexical search + exact docket lookup; daily incremental sync from Judicial Yuan open data, including post-publication corrections and takedowns |
-| Appeal-chain relations | 4,540,466 | attached as `case_history` per judgment, with 主文 "廢棄/駁回" flags |
-| Administrative rules / interpretations (行政規則・函釋) | 88,421 | exact serial lookup + semantic search (hosted MCP); 90 issuing agencies, per-agency detail below |
+| **Court judgments** (all Taiwan court levels) | **22,613,130** | semantic + lexical search + exact docket lookup; daily incremental sync from Judicial Yuan open data, including post-publication corrections and takedowns |
+| Appeal-chain relations | 4,544,095 | attached as `case_history` per judgment, with 主文 "廢棄/駁回" flags |
+| Administrative rules / interpretations (行政規則・函釋) | 88,437 | exact serial lookup + semantic search (hosted MCP); 90 issuing agencies, per-agency detail below |
 | Judicial Yuan Grand Justices interpretations (大法官解釋) | 813 | same as above |
 | Constitutional Court judgments (憲判字) | 57 | same as above |
 | Tax interpretations (財政部) | 9,093 | same as above |
-| Interpretation validity ledger | 69,509 | repealed / ceased / superseded status, checked before citing |
+| Interpretation validity ledger | 69,542 | repealed / ceased / superseded status, checked before citing |
 | Labour arbitration decisions (勞動部裁決委員會) | 400 | surfaced alongside labour queries, explicitly labelled as non-court decisions |
 | Constitutional-tier instruments (憲法位階) | 7 | 228 articles: the Constitution, its additional articles, the implementation procedure and the martial-law orders. Searchable on [dr-legal.com.tw](https://dr-legal.com.tw) |
 | Acts (法律) | 1,017 / 44,372 articles | Named 法/律/條例/通則 per Central Regulation Standard Act §2. Same as above |
-| Regulations (命令) | 7,249 / 128,675 articles | Named 規程/規則/細則/辦法/綱要/標準/準則 per §3. Same as above |
+| Regulations (命令) | 7,254 / 128,749 articles | Named 規程/規則/細則/辦法/綱要/標準/準則 per §3. Same as above |
 | Repealed instruments | 3,523 | 320 acts, 3,201 regulations, plus constitutional-tier norms such as the Temporary Provisions; flagged as repealed for historical research |
 
 Judgments sync daily (Judicial Yuan open data lags publication by a few days;
@@ -60,8 +60,8 @@ directly from the production database on the stated date, not estimates.
 | 智慧財產及商業法院 | 23,678 |
 | 高雄少年及家事法院 | 22,113 |
 | 其他專業法庭・委員會 | 32,250 |
-| 未帶法院代碼欄位（計入總數，不列層級） | 415,908 |
-| **合計** | **22,578,975** |
+| 未帶法院代碼欄位（計入總數，不列層級） | 450,063 |
+| **合計** | **22,613,130** |
 
 | 案件類別 | 筆數 |
 |---|---:|
@@ -70,24 +70,24 @@ directly from the production database on the stated date, not estimates.
 | 行政 | 573,417 |
 | 其他 | 24,650 |
 
-### Administrative rules by issuing agency (90 agencies, as of 2026-09-13)
+### Administrative rules by issuing agency (90 agencies, as of 2026-09-22)
 
 Agency names are kept in their official Chinese form as recorded on each
 interpretation, including historical names of reorganized agencies.
 
 | Agency | Count |
 |---|---:|
-| 財政部 | 10,639 |
+| 財政部 | 10,642 |
 | 內政部國土管理署 | 8,769 |
 | 經濟部智慧財產局 | 7,173 |
 | 勞動部 | 7,164 |
-| 法務部 | 7,087 |
+| 法務部 | 7,088 |
 | 經濟部 | 6,674 |
 | 行政院環境保護署 | 4,463 |
 | 行政院公共工程委員會 | 4,104 |
-| 銓敘部 | 3,991 |
-| 農業部 | 3,080 |
-| 金管會 | 2,844 |
+| 銓敘部 | 3,994 |
+| 農業部 | 3,081 |
+| 金管會 | 2,850 |
 | 內政部 | 2,667 |
 | 前司法行政部 | 1,432 |
 | 法務部行政執行署 | 1,410 |
@@ -105,7 +105,7 @@ interpretation, including historical names of reorganized agencies.
 | 海洋委員會 | 223 |
 | 公平交易委員會 | 204 |
 | 文化部 | 204 |
-| 法務部矯正署 | 168 |
+| 法務部矯正署 | 169 |
 | 中央選舉委員會 | 112 |
 | 農業部林業及自然保育署 | 103 |
 | 客家委員會 | 97 |
@@ -113,7 +113,7 @@ interpretation, including historical names of reorganized agencies.
 | 國家發展委員會 | 86 |
 | 個人資料保護委員會籌備處 | 73 |
 | 故宮博物院 | 58 |
-| 環境部 | 46 |
+| 環境部 | 47 |
 | 司法院 | 43 |
 | 臺灣高等法院檢察署 | 41 |
 | 法務部政風司 | 37 |
@@ -121,7 +121,7 @@ interpretation, including historical names of reorganized agencies.
 | 經濟部能源署 | 28 |
 | 法務部調查局 | 20 |
 | Other 47 agencies (each under 20) | 105 |
-| **合計** | **79,328** |
+| **合計** | **79,344** |
 
 
 ## Why it is different
@@ -129,7 +129,7 @@ interpretation, including historical names of reorganized agencies.
 This is not a generic keyword judgment search tool. It connects to the TLR
 retrieval service that Legal Detective has been building for a long time:
 
-- **22,578,975** Taiwan court decisions (as of 2026-09-13), structurally
+- **22,613,130** Taiwan court decisions (as of 2026-09-22), structurally
   processed and vectorized.
 - **Semantic fuzzy search** — natural-language queries find judgments that are
   "conceptually similar but worded differently"; lexical exact-match modes are

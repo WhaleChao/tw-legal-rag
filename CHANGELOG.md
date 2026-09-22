@@ -1,5 +1,23 @@
 # Changelog
 
+## Data coverage update (2026-09-22)
+
+Documentation only; no package or API change (still v2.3.0).
+
+- **Court judgments: 22,578,975 to 22,613,130** (daily incremental sync
+  resumed). As in the 2026-09-08 update, the entire increase lands in the
+  "no court-code field" bucket (415,908 to 450,063, an exact match with the
+  34,155 new records), so the court-level and case-type tables are unchanged.
+- **Administrative interpretations: 88,421 to 88,437** across the same 90
+  agencies (財政部 10,639 to 10,642, 金管會 2,844 to 2,850, 銓敘部 3,991 to
+  3,994, and one each for 法務部, 農業部, 法務部矯正署 and 環境部).
+- **Regulations (命令): 7,249 to 7,254 instruments, 128,675 to 128,749
+  articles.** Acts, constitutional-tier instruments and repealed counts are
+  unchanged.
+- **Interpretation validity ledger: 69,509 to 69,542.**
+- **Appeal-chain relations: 4,540,466 to 4,544,095.**
+- Labor-decision count unchanged.
+
 ## Data coverage update (2026-09-13)
 
 Documentation only; no package or API change (still v2.3.0).
