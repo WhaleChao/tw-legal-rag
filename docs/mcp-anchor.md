@@ -218,8 +218,10 @@ The hosted MCP adds a sixth tool, `get_law_article` (also available as REST
 `POST /v1/law_article`): an **exact lookup of a current Taiwan statute
 article** by law name plus article number. Like everything else on this
 surface, it **calls no LLM**. The statute corpus mirrors the official
-National Laws and Regulations Database (全國法規資料庫) and is synced
-periodically.
+National Laws and Regulations Database (全國法規資料庫): the official
+dataset is checked daily and imported whenever a new release appears (the
+official release cadence is roughly weekly), and every response carries the
+dataset version date the corpus corresponds to.
 
 ### Purpose
 
@@ -240,10 +242,13 @@ this tool replaces memory with a lookup.
 ### Output
 
 Each entry in `matches[]` carries the official `law_name`, `law_level`,
-`law_modified_date` (last amendment date), `law_url` (official database
-link), an `abolished` flag, the normalized `article_no`, and
-`article_content` (the current full text of the article). Quote statute text
-**only** from `article_content`.
+`law_modified_date` (last amendment date), `dataset_version` (the official
+dataset release date the corpus corresponds to, since 2026-09-23), `law_url`
+(official database link), an `abolished` flag, the normalized `article_no`,
+and `article_content` (the current full text of the article). Quote statute
+text **only** from `article_content`. `notes` also states the dataset version
+in prose; amendments promulgated after `dataset_version` are not yet in the
+corpus, so compare the official last-amendment date before citing.
 
 ### Semantics of a miss
 

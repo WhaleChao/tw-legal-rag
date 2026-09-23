@@ -25,22 +25,22 @@ guarantee semantic faithfulness of third-party model outputs. Its built-in
 citation check only verifies whether cited judgments belong to the retrieved
 bundle.
 
-## Data coverage (as of 2026-09-22, counted directly from the production database)
+## Data coverage (as of 2026-09-23, counted directly from the production database)
 
 | Corpus | Size | Access |
 |---|---:|---|
-| **Court judgments** (all Taiwan court levels) | **22,613,130** | semantic + lexical search + exact docket lookup; daily incremental sync from Judicial Yuan open data, including post-publication corrections and takedowns |
-| Appeal-chain relations | 4,544,095 | attached as `case_history` per judgment, with 主文 "廢棄/駁回" flags |
-| Administrative rules / interpretations (行政規則・函釋) | 88,437 | exact serial lookup + semantic search (hosted MCP); 90 issuing agencies, per-agency detail below |
+| **Court judgments** (all Taiwan court levels) | **22,617,802** | semantic + lexical search + exact docket lookup; daily incremental sync from Judicial Yuan open data, including post-publication corrections and takedowns |
+| Appeal-chain relations | 4,544,682 | attached as `case_history` per judgment, with 主文 "廢棄/駁回" flags |
+| Administrative rules / interpretations (行政規則・函釋) | 88,438 | exact serial lookup + semantic search (hosted MCP); 90 issuing agencies, per-agency detail below |
 | Judicial Yuan Grand Justices interpretations (大法官解釋) | 813 | same as above |
 | Constitutional Court judgments (憲判字) | 57 | same as above |
 | Tax interpretations (財政部) | 9,093 | same as above |
-| Interpretation validity ledger | 69,542 | repealed / ceased / superseded status, checked before citing |
+| Interpretation validity ledger | 69,543 | repealed / ceased / superseded status, checked before citing |
 | Labour arbitration decisions (勞動部裁決委員會) | 400 | surfaced alongside labour queries, explicitly labelled as non-court decisions |
 | Constitutional-tier instruments (憲法位階) | 7 | 228 articles: the Constitution, its additional articles, the implementation procedure and the martial-law orders. Searchable on [dr-legal.com.tw](https://dr-legal.com.tw) |
-| Acts (法律) | 1,017 / 44,372 articles | Named 法/律/條例/通則 per Central Regulation Standard Act §2. Same as above |
-| Regulations (命令) | 7,254 / 128,749 articles | Named 規程/規則/細則/辦法/綱要/標準/準則 per §3. Same as above |
-| Repealed instruments | 3,523 | 320 acts, 3,201 regulations, plus constitutional-tier norms such as the Temporary Provisions; flagged as repealed for historical research |
+| Acts (法律) | 1,018 / 44,396 articles | Named 法/律/條例/通則 per Central Regulation Standard Act §2. Same as above |
+| Regulations (命令) | 7,253 / 128,744 articles | Named 規程/規則/細則/辦法/綱要/標準/準則 per §3. Same as above |
+| Repealed instruments | 3,525 | 320 acts, 3,203 regulations, plus constitutional-tier norms such as the Temporary Provisions; flagged as repealed for historical research |
 
 Judgments sync daily (Judicial Yuan open data lags publication by a few days;
 for very recent decisions consult the official site). Numbers above are taken
@@ -50,27 +50,26 @@ directly from the production database on the stated date, not estimates.
 
 | 法院層級 | 筆數 |
 |---|---:|
-| 地方法院 | 16,686,132 |
-| 地方法院簡易庭 | 3,268,493 |
-| 高等法院及分院 | 1,328,658 |
-| 最高法院 | 399,288 |
-| 高等行政法院 | 200,600 |
-| 最高行政法院 | 122,964 |
-| 地方行政訴訟庭 | 78,891 |
-| 智慧財產及商業法院 | 23,678 |
-| 高雄少年及家事法院 | 22,113 |
-| 其他專業法庭・委員會 | 32,250 |
-| 未帶法院代碼欄位（計入總數，不列層級） | 450,063 |
-| **合計** | **22,613,130** |
+| 地方法院 | 17,039,112 |
+| 地方法院簡易庭 | 3,321,646 |
+| 高等法院及分院 | 1,352,908 |
+| 最高法院 | 404,588 |
+| 高等行政法院 | 202,701 |
+| 最高行政法院 | 124,006 |
+| 地方行政訴訟庭 | 91,061 |
+| 高雄少年及家事法院 | 24,632 |
+| 智慧財產及商業法院 | 24,050 |
+| 其他專業法庭・委員會 | 33,098 |
+| **合計** | **22,617,802** |
 
 | 案件類別 | 筆數 |
 |---|---:|
-| 民事 | 14,232,700 |
-| 刑事 | 7,332,300 |
-| 行政 | 573,417 |
-| 其他 | 24,650 |
+| 民事 | 14,515,015 |
+| 刑事 | 7,488,340 |
+| 行政 | 588,944 |
+| 其他 | 25,503 |
 
-### Administrative rules by issuing agency (90 agencies, as of 2026-09-22)
+### Administrative rules by issuing agency (90 agencies, as of 2026-09-23)
 
 Agency names are kept in their official Chinese form as recorded on each
 interpretation, including historical names of reorganized agencies.
@@ -80,7 +79,7 @@ interpretation, including historical names of reorganized agencies.
 | 財政部 | 10,642 |
 | 內政部國土管理署 | 8,769 |
 | 經濟部智慧財產局 | 7,173 |
-| 勞動部 | 7,164 |
+| 勞動部 | 7,165 |
 | 法務部 | 7,088 |
 | 經濟部 | 6,674 |
 | 行政院環境保護署 | 4,463 |
@@ -121,7 +120,7 @@ interpretation, including historical names of reorganized agencies.
 | 經濟部能源署 | 28 |
 | 法務部調查局 | 20 |
 | Other 47 agencies (each under 20) | 105 |
-| **合計** | **79,344** |
+| **合計** | **79,345** |
 
 
 ## Why it is different
@@ -129,7 +128,7 @@ interpretation, including historical names of reorganized agencies.
 This is not a generic keyword judgment search tool. It connects to the TLR
 retrieval service that Legal Detective has been building for a long time:
 
-- **22,613,130** Taiwan court decisions (as of 2026-09-22), structurally
+- **22,617,802** Taiwan court decisions (as of 2026-09-23), structurally
   processed and vectorized.
 - **Semantic fuzzy search** — natural-language queries find judgments that are
   "conceptually similar but worded differently"; lexical exact-match modes are
@@ -145,11 +144,13 @@ retrieval service that Legal Detective has been building for a long time:
   judgments are strictly separated. See
   [`docs/mcp-anchor.md`](docs/mcp-anchor.md).
 - **Exact statute lookup** — retrieve the current text of a Taiwan statute
-  article by law name plus article number, with the law's last-amendment date
-  and any abolition note, so an article citation can be verified before it
-  goes into legal writing instead of being recalled from model memory. Common
-  abbreviations resolve to official law names. Current consolidated version
-  only; for pre-amendment text consult the official amendment history.
+  article by law name plus article number, with the law's last-amendment date,
+  any abolition note and the official dataset version date the corpus
+  corresponds to, so an article citation can be verified before it goes into
+  legal writing instead of being recalled from model memory. Common
+  abbreviations resolve to official law names. The statute corpus is checked
+  against the official dataset daily. Current consolidated version only; for
+  pre-amendment text consult the official amendment history.
 - **Citation safeguards are first-class** — `allowed_citations` read-whitelist,
   `unread_candidates` markers, per-bundle verification instructions, plus the
   CLI-side citation check — all aimed at legal AI's worst hallucination mode:

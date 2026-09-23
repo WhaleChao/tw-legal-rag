@@ -1,5 +1,34 @@
 # Changelog
 
+## Statute lookup: dataset version + data coverage update (2026-09-23)
+
+Hosted-server and documentation change; no package release (CLI still v2.3.0,
+which already prints the new note through `law`).
+
+- **`get_law_article` / `POST /v1/law_article` now returns `dataset_version`**
+  on every match: the release date of the official 全國法規資料庫 dataset the
+  statute corpus corresponds to (`2026-09-11` at the time of writing). `notes`
+  also states the version in prose. Amendments promulgated after that date are
+  not yet in the corpus, so compare the official last-amendment date before
+  citing. The statute corpus is now checked against the official dataset daily
+  and re-imported whenever a new release appears (the official cadence is
+  roughly weekly); previously it was refreshed on a fixed twice-monthly schedule.
+- **Court judgments: 22,613,130 to 22,617,802.** Every record now carries a
+  court code, so the "no court-code field" bucket (450,063 in the previous
+  snapshot) is gone and all court-level rows are updated: 地方法院 17,039,112,
+  地方法院簡易庭 3,321,646, 高等法院及分院 1,352,908, 最高法院 404,588,
+  高等行政法院 202,701, 最高行政法院 124,006, 地方行政訴訟庭 91,061,
+  高雄少年及家事法院 24,632, 智慧財產及商業法院 24,050, 其他專業法庭・委員會
+  33,098. Case-type rows updated accordingly (民事 14,515,015, 刑事 7,488,340,
+  行政 588,944, 其他 25,503).
+- **Statutes: acts 1,017 to 1,018 (44,372 to 44,396 articles); regulations
+  7,254 to 7,253 (128,749 to 128,744 articles); repealed instruments 3,523 to
+  3,525.** Constitutional-tier counts unchanged.
+- **Administrative interpretations: 88,437 to 88,438** (勞動部 7,164 to 7,165).
+- **Interpretation validity ledger: 69,542 to 69,543.**
+- **Appeal-chain relations: 4,544,095 to 4,544,682.**
+- Labor-decision count unchanged.
+
 ## Data coverage update (2026-09-22)
 
 Documentation only; no package or API change (still v2.3.0).

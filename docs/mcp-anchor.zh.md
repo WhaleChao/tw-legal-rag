@@ -191,7 +191,8 @@ hosted MCP 新增第五個工具 `search_legal_references`(亦提供 REST
 
 hosted MCP 新增第六個工具 `get_law_article`(亦提供 REST
 `POST /v1/law_article`):以**法規名稱＋條號**精確查詢現行條文。與本介面其他
-工具相同,**不呼叫任何 LLM**。法條語料鏡自全國法規資料庫,定期同步。
+工具相同,**不呼叫任何 LLM**。法條語料鏡自全國法規資料庫官方資料集,每日核對官方版本更新
+(官方資料集約每週發版);回應附本庫所對應的資料集版本日期。
 
 ### 用途
 
@@ -208,10 +209,12 @@ hosted MCP 新增第六個工具 `get_law_article`(亦提供 REST
 ### 輸出
 
 `matches[]` 各筆含官方 `law_name`、`law_level`(法規層級)、
-`law_modified_date`(最後修正日期)、`law_url`(官方資料庫連結)、
+`law_modified_date`(最後修正日期)、`dataset_version`(本庫法規資料所對應之
+官方資料集版本日期,2026-09-23 起)、`law_url`(官方資料庫連結)、
 `abolished`(廢止註記旗標)、正規化後的 `article_no`,以及
 `article_content`(該條現行全文)。條文引用**只得**逐字取自
-`article_content`。
+`article_content`。`notes` 另附一句本庫法規資料版本說明;`dataset_version`
+之後公布之修正,本庫尚未收入,引用前請比對官網最後修正日期。
 
 ### 查無的語義
 
