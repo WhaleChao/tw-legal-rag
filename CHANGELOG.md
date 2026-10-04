@@ -1,5 +1,27 @@
 # Changelog
 
+## Data coverage update (2026-10-04)
+
+Documentation-only change; no package release (CLI still v2.3.0).
+
+- **Court judgments: 22,617,802 to 22,649,339.** Court-level rows: 地方法院
+  17,063,984, 地方法院簡易庭 3,325,054, 高等法院及分院 1,354,426, 最高法院
+  405,029, 高等行政法院 202,855, 最高行政法院 124,056, 地方行政訴訟庭 91,776,
+  高雄少年及家事法院 24,812, 智慧財產及商業法院 24,079, 其他專業法庭・委員會
+  33,268. Case-type rows: 民事 14,534,450, 刑事 7,499,351, 行政 590,034,
+  其他 25,504.
+- **Statutes: act articles 44,396 to 44,399; regulation articles 128,744 to
+  128,749.** Instrument counts unchanged (acts 1,018, regulations 7,253,
+  repealed 3,525); the statute corpus corresponds to the official dataset
+  release of 2026-09-24.
+- **Administrative interpretations: 88,438 to 88,459** (財政部 10,647, 法務部
+  7,089, 農業部 3,084, 法務部行政執行署 1,417, 國科會 570, 文化部 206,
+  個人資料保護委員會籌備處 74); still 90 agencies.
+- **Interpretation validity ledger: 69,543 to 69,593.**
+- **Appeal-chain relations: 4,544,682 to 4,549,699.**
+- Constitutional-tier and labor-decision counts unchanged.
+- Wording: one 身份 corrected to 身分 in the Chinese README.
+
 ## Statute lookup: dataset version + data coverage update (2026-09-23)
 
 Hosted-server and documentation change; no package release (CLI still v2.3.0,
