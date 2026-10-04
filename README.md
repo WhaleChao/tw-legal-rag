@@ -230,14 +230,14 @@ pip install twlegalrag
 ## 使用
 
 ```bash
-# 1) 純檢索 — 列出符合的判決
+# 1) 純檢索：列出符合的判決
 twlegalrag search "勞資 加班費" -n 5 --read
 
-# 2) 打包 — 產生可交給任何 AI 的 bundle ★主流程
+# 2) 打包：產生可交給任何 AI 的 bundle ★主流程
 twlegalrag pack "車禍對方全責,我可以求償什麼?" -o bundle.json
 #   → 把 bundle.json 貼給 ChatGPT / Claude / Gemini,要求它只引用 bundle 內的判決
 
-# 3) 引用檢查 — 對任何 AI 產生的答案做 bundle 層級檢查
+# 3) 引用檢查：對任何 AI 產生的答案做 bundle 層級檢查
 twlegalrag check bundle.json answer.txt
 
 # 4) 法源查證: 法條原文與函釋效力 (零 LLM)

@@ -130,20 +130,20 @@ retrieval service that Legal Detective has been building for a long time:
 
 - **22,649,339** Taiwan court decisions (as of 2026-10-04), structurally
   processed and vectorized.
-- **Semantic fuzzy search** — natural-language queries find judgments that are
+- **Semantic fuzzy search**: natural-language queries find judgments that are
   "conceptually similar but worded differently"; lexical exact-match modes are
   available for technical vocabulary.
-- **Exact docket lookup** — a complete docket number switches to exact lookup
+- **Exact docket lookup**: a complete docket number switches to exact lookup
   automatically; a miss is reported honestly ("not found does not mean the
   judgment does not exist"), never padded with similar cases.
-- **Appeal chain `case_history`** — each judgment carries its recorded
+- **Appeal chain `case_history`**: each judgment carries its recorded
   upper/lower instances with 主文 "廢棄/駁回" flags, so you can see **before
   citing** whether a judgment has been overturned.
-- **Paired interpretation tools** — exact serial lookup (with validity status)
+- **Paired interpretation tools**: exact serial lookup (with validity status)
   and semantic search over administrative interpretations; interpretations and
   judgments are strictly separated. See
   [`docs/mcp-anchor.md`](docs/mcp-anchor.md).
-- **Exact statute lookup** — retrieve the current text of a Taiwan statute
+- **Exact statute lookup**: retrieve the current text of a Taiwan statute
   article by law name plus article number, with the law's last-amendment date,
   any abolition note and the official dataset version date the corpus
   corresponds to, so an article citation can be verified before it goes into
@@ -151,9 +151,9 @@ retrieval service that Legal Detective has been building for a long time:
   abbreviations resolve to official law names. The statute corpus is checked
   against the official dataset daily. Current consolidated version only; for
   pre-amendment text consult the official amendment history.
-- **Citation safeguards are first-class** — `allowed_citations` read-whitelist,
+- **Citation safeguards are first-class**: `allowed_citations` read-whitelist,
   `unread_candidates` markers, per-bundle verification instructions, plus the
-  CLI-side citation check — all aimed at legal AI's worst hallucination mode:
+  CLI-side citation check, all aimed at legal AI's worst hallucination mode:
   **real docket number, fabricated holding**.
 - This CLI ships **no judgment database** and exposes no model weights, vector
   indexes, or retrieval-pipeline internals; it is a client for the public TLR
@@ -218,12 +218,12 @@ endorses no** model output. Answers are produced by the AI you choose
 - whether **obiter dicta** was treated as the judgment's **core authority**;
 - paraphrase-style holding hallucinations.
 
-All of these require reading the full judgment text — which is why bundles
+All of these require reading the full judgment text, which is why bundles
 include judgment excerpts and verification instructions that require the
 downstream model to verify on its own. **`pass` only means "the cited numbers
 match the bundle's identity list"; it does not mean "the legal reasoning is
 correct" or "the quote really comes from that judgment."** Also, `check` only
-compares against **bundle content**, not the entire Legal Detective database —
+compares against **bundle content**, not the entire Legal Detective database:
 if you later open full judgment texts yourself and rewrite the answer, `check`
 still only sees the excerpts originally packed.
 
@@ -233,21 +233,21 @@ still only sees the excerpts originally packed.
 pip install twlegalrag
 ```
 
-Depends only on `httpx` / `typer` / `rich`. No LLM packages or keys needed —
+Depends only on `httpx` / `typer` / `rich`. No LLM packages or keys needed:
 this tool does not call LLMs.
 
 ## Usage
 
 ```bash
-# 1) Pure retrieval — list matching judgments
+# 1) Pure retrieval: list matching judgments
 twlegalrag search "勞資 加班費" -n 5 --read
 
-# 2) Pack — produce a bundle you can hand to any AI  ★ main flow
+# 2) Pack: produce a bundle you can hand to any AI  ★ main flow
 twlegalrag pack "車禍對方全責,我可以求償什麼?" -o bundle.json
 #   → paste bundle.json to ChatGPT / Claude / Gemini and require it to cite
 #     only judgments inside the bundle
 
-# 3) Citation check — bundle-level check on any AI-generated answer
+# 3) Citation check: bundle-level check on any AI-generated answer
 twlegalrag check bundle.json answer.txt
 
 # 4) statute and interpretation lookup (no LLM)
@@ -273,7 +273,7 @@ back and verify that (a) every holding attributed to a judgment actually
 appears in that judgment's excerpt (not another judgment's, not inferred);
 (b) outcome directions (win/lose/vacated/dismissed/remanded) are not reversed;
 (c) judgments shown as vacated in `case_history` are not cited as currently
-valid holdings. This complements `check`'s bundle-level number check — a real
+valid holdings. This complements `check`'s bundle-level number check: a real
 case number does not make the attributed holding real, and opinion-layer
 verification can only be done by **the model that read the text**; these rules
 write that obligation into every bundle.
@@ -290,7 +290,7 @@ cited as court reasoning). See [`docs/mcp-anchor.md`](https://github.com/aa01011
 
 By default the CLI talks to the public endpoint `https://tlr.dr-legal.com.tw`,
 no key required. If the service operator issues you an API key, put it in an
-environment variable or `~/.twlegalrag/config.toml` (git-ignored — **never**
+environment variable or `~/.twlegalrag/config.toml` (git-ignored; **never**
 commit it):
 
 ```bash
@@ -344,7 +344,7 @@ it is deterministic string analysis.
 ⚠️ This directory is a **snapshot** of internal code; some functions in it
 (e.g. `check_party_as_court` / `run_all_checks`) are **not used** by the CLI.
 Their presence does **not** mean the CLI can do opinion-layer / semantic
-verification — the CLI uses only two bundle-level checks. Do not read the file
+verification; the CLI uses only two bundle-level checks. Do not read the file
 list as a feature list. See `twlegalrag/faithful/VENDORED.md`.
 
 ## 2026-08-20 hosted-service update (MCP / REST)
@@ -353,7 +353,7 @@ list as a feature list. See `twlegalrag/faithful/VENDORED.md`.
   read in full directly.
 - Every result carries `hit_excerpt` (a preview of the matched passage); quote
   from the full reasoning text, not from this field.
-- `get_judgment_fulltext` supports `excerpt_offset` paging — long judgments can
+- `get_judgment_fulltext` supports `excerpt_offset` paging, so long judgments can
   be read to the end.
 - Lexical search modes (`search_type: keyword` / `phrase`) improved for precise
   technical vocabulary; conceptual questions should still use the default
@@ -448,18 +448,18 @@ own use.
 ## License
 
 **Elastic License 2.0 (ELv2)** from v2.0.0. Free to use, copy, modify and
-redistribute — including commercial and internal-business use — with two
+redistribute, including commercial and internal-business use, with two
 limits: you may not offer the software itself to third parties as a hosted
 or managed service, and you may not remove license/notice protections.
 Versions up to v1.2.2 remain MIT.
 
 The hosted API and the judgment corpus were never covered by the code
-license — see [`TERMS.md`](https://github.com/aa0101181514/tw-legal-rag/blob/main/TERMS.md). Project names and logos are not licensed —
+license; see [`TERMS.md`](https://github.com/aa0101181514/tw-legal-rag/blob/main/TERMS.md). Project names and logos are not licensed;
 see [`TRADEMARK.md`](https://github.com/aa0101181514/tw-legal-rag/blob/main/TRADEMARK.md). This project does not accept external pull
-requests (single-author licensing policy) — see [`CONTRIBUTING.md`](https://github.com/aa0101181514/tw-legal-rag/blob/main/CONTRIBUTING.md).
+requests (single-author licensing policy); see [`CONTRIBUTING.md`](https://github.com/aa0101181514/tw-legal-rag/blob/main/CONTRIBUTING.md).
 
 ---
 
-<!-- MCP Server Registry ownership marker — verifies this PyPI package owns the
+<!-- MCP Server Registry ownership marker: verifies this PyPI package owns the
      io.github.aa0101181514/* namespace. Do not remove. -->
 mcp-name: io.github.aa0101181514/tw-legal-rag
