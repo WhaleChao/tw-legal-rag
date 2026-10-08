@@ -1,5 +1,26 @@
 # Changelog
 
+## Data coverage update (2026-10-08)
+
+Documentation-only change; no package release (CLI still v2.3.0).
+
+- **Administrative rules and interpretations: 88,459 to 102,950; agencies 90 to 93.**
+  Eight more agency statute systems (主管法規查詢系統) are now collected weekly:
+  金融監督管理委員會, 教育部, 文化部, 環境部, 考試院, 僑務委員會, 外交部, 大陸委員會
+  (14,467 regulations and administrative rules added on 2026-10-08). Largest rows now:
+  金管會 8,383 (law.fsc.gov.tw 法規命令與行政規則 5,525 新收), 考試院 3,373, 教育部 2,911, 文化部 1,516, 環境部 1,112, 僑務委員會 184, 外交部 134, 大陸委員會 52.
+- Every administrative source now carries an explicit category (行政函釋 or 行政命令), so
+  all 93,857 admin rows are reachable through `search_legal_references`; previously
+  uncategorized rows (for example 法務部 and 經濟部智慧財產局 interpretations) were
+  indexed but not returned by that tool.
+- Full texts from the statute-system crawlers are now stripped of site navigation and
+  footer text at crawl time; 22,041 existing rows were re-cleaned and re-embedded.
+- **Court judgments: 22,649,339 to 22,663,802.** Court-level rows: 地方法院 17,075,529, 地方法院簡易庭 3,326,486, 高等法院及分院 1,355,046, 最高法院 405,247, 高等行政法院 202,904, 最高行政法院 124,117, 地方行政訴訟庭 92,229, 高雄少年及家事法院 24,870, 智慧財產及商業法院 24,085, 其他專業法庭・委員會 33,289. Case-type rows: 民事 14,543,715, 刑事 7,503,965, 行政 590,597, 其他 25,525.
+- **Interpretation validity ledger: 69,593 to 69,616.**
+- **Appeal-chain relations: 4,549,699 to 4,550,703.**
+- Statute, constitutional-tier and labor-decision counts unchanged (statute dataset still
+  the official release of 2026-09-24).
+
 ## Data coverage update (2026-10-04)
 
 Documentation-only change; no package release (CLI still v2.3.0).
