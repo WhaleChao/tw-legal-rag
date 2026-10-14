@@ -1,5 +1,13 @@
 # Changelog
 
+## v2.3.1 (2026-10-14)
+
+- **Fix: CLI no longer crashes on NO_PROXY entries httpx cannot parse.** IPv6 CIDR or
+  bracketed entries such as `::1/128`, `[::1]` or `fe80::/10` in `NO_PROXY`/`no_proxy`
+  made every command fail with `httpx.InvalidURL`, so users had to run
+  `env -u no_proxy -u NO_PROXY twlegalrag ...`. Unparseable entries are now skipped with a
+  one-line warning on stderr; proxy settings otherwise apply as before.
+
 ## Data coverage update (2026-10-10)
 
 Documentation-only change; no package release (CLI still v2.3.0).

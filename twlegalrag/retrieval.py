@@ -27,7 +27,10 @@ Design notes baked in from production experience:
 from __future__ import annotations
 
 import json
+import os
+import sys
 import time
+from contextlib import contextmanager
 from dataclasses import dataclass, field
 from typing import Optional
 
@@ -93,6 +96,75 @@ def _loads_lenient(text: str):
         raise RetrievalError(f"TLR returned unparseable JSON: {exc}") from exc
 
 
+_NO_PROXY_VARS = ("NO_PROXY", "no_proxy")
+
+
+def _no_proxy_entry_ok(entry: str) -> bool:
+    """True if httpx can parse this single NO_PROXY entry."""
+    with _env_override({"NO_PROXY": entry, "no_proxy": None}):
+        try:
+            httpx.Client().close()
+        except httpx.InvalidURL:
+            return False
+    return True
+
+
+@contextmanager
+def _env_override(values: dict):
+    saved = {k: os.environ.get(k) for k in values}
+    try:
+        for k, v in values.items():
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
+        yield
+    finally:
+        for k, v in saved.items():
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
+
+
+def _make_http_client(timeout: float) -> httpx.Client:
+    """Build the httpx client, surviving NO_PROXY entries httpx cannot parse.
+
+    httpx raises InvalidURL at construction time for IPv6 CIDR or bracketed
+    entries such as ``::1/128``, ``[::1]`` or ``fe80::/10``, which are common in
+    corporate VM images. Rather than crash, drop only the unparseable entries
+    (for this client only; os.environ is restored) and keep proxy support.
+    """
+    try:
+        return httpx.Client(timeout=timeout, follow_redirects=True)
+    except httpx.InvalidURL:
+        pass
+    override: dict = {}
+    dropped: list = []
+    for var in _NO_PROXY_VARS:
+        raw = os.environ.get(var)
+        if raw is None:
+            continue
+        kept = []
+        for entry in (e.strip() for e in raw.split(",")):
+            if not entry:
+                continue
+            if _no_proxy_entry_ok(entry):
+                kept.append(entry)
+            elif entry not in dropped:
+                dropped.append(entry)
+        override[var] = ",".join(kept)
+    with _env_override(override):
+        client = httpx.Client(timeout=timeout, follow_redirects=True)
+    if dropped:
+        print(
+            "twlegalrag: ignoring NO_PROXY entries httpx cannot parse: "
+            + ", ".join(dropped),
+            file=sys.stderr,
+        )
+    return client
+
+
 class TLRClient:
     """Thin client over the TLR retrieval API. Carries no LLM, no DB, no keys."""
 
@@ -107,7 +179,7 @@ class TLRClient:
         self.api_key = api_key
         self.timeout = timeout
         self.max_retries = max_retries
-        self._client = httpx.Client(timeout=timeout, follow_redirects=True)
+        self._client = _make_http_client(timeout)
 
     # -- context manager so callers can `with TLRClient() as c:` --------------
     def __enter__(self) -> "TLRClient":
