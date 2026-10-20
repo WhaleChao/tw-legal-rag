@@ -1,5 +1,25 @@
 # Changelog
 
+## Data coverage update (2026-10-20)
+
+Documentation-only change; no package release (CLI still v2.3.1).
+
+- **Court judgments: 22,674,799 to 22,724,893.** Court-level rows: 地方法院 17,105,915,
+  地方法院簡易庭 3,331,114, 高等法院及分院 1,357,696, 最高法院 405,703, 高等行政法院 203,080,
+  最高行政法院 124,264, 地方行政訴訟庭 93,510, 高雄少年及家事法院 25,148, 智慧財產及商業法院
+  24,113, 其他專業法庭・委員會 33,321. Case-type rows: 民事 14,567,747, 刑事 7,518,354,
+  行政 592,206, 其他 25,557. 21,029 recently ingested judgments do not yet carry a court
+  code; they are counted in the total and listed as a separate row in the court-level table
+  until the code is backfilled.
+- **Administrative rules and interpretations: 103,029 to 103,091** (still 93 agencies).
+  財政部 10,661, 金管會 8,392, 勞動部 7,179, 法務部 7,096, 銓敘部 4,008, 考試院 3,382,
+  農業部 3,088, 教育部 2,912, 文化部 1,517, 環境部 1,119, 公務人員保障暨培訓委員會 690,
+  國科會 574, 海洋委員會 224, 法務部矯正署 170, 故宮博物院 59.
+- **Regulations: 7,254 to 7,253 (128,738 articles); repealed instruments 3,525 to 3,526.**
+  Acts unchanged at 1,022 (44,503 articles).
+- **Interpretation validity ledger: 80,339 to 80,470. Appeal-chain relations: 4,366,833 to
+  4,371,339.** Labour arbitration decisions unchanged at 465.
+
 ## v2.3.1 (2026-10-14)
 
 - **Fix: CLI no longer crashes on NO_PROXY entries httpx cannot parse.** IPv6 CIDR or
