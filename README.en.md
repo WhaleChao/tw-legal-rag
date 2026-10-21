@@ -25,13 +25,13 @@ guarantee semantic faithfulness of third-party model outputs. Its built-in
 citation check only verifies whether cited judgments belong to the retrieved
 bundle.
 
-## Data coverage (as of 2026-10-20, counted directly from the production database)
+## Data coverage (as of 2026-10-21, counted directly from the production database)
 
 | Corpus | Size | Access |
 |---|---:|---|
-| **Court judgments** (all Taiwan court levels) | **22,724,893** | semantic + lexical search + exact docket lookup; daily incremental sync from Judicial Yuan open data, including post-publication corrections and takedowns |
-| Appeal-chain relations | 4,371,339 | attached as `case_history` per judgment, with 主文 "廢棄/駁回" flags |
-| Administrative rules / interpretations (行政規則・函釋) | 103,091 | exact serial lookup + semantic search (hosted MCP); 93 issuing agencies, per-agency detail below |
+| **Court judgments** (all Taiwan court levels) | **22,729,045** | semantic + lexical search + exact docket lookup; daily incremental sync from Judicial Yuan open data, including post-publication corrections and takedowns |
+| Appeal-chain relations | 4,375,506 | attached as `case_history` per judgment, with 主文 "廢棄/駁回" flags |
+| Administrative rules / interpretations (行政規則・函釋) | 107,767 | exact serial lookup + semantic search (hosted MCP); 107 issuing agencies, per-agency detail below |
 | Judicial Yuan Grand Justices interpretations (大法官解釋) | 813 | same as above |
 | Constitutional Court judgments (憲判字) | 59 | same as above |
 | Tax interpretations (財政部) | 9,093 | same as above |
@@ -50,81 +50,83 @@ directly from the production database on the stated date, not estimates.
 
 | 法院層級 | 筆數 |
 |---|---:|
-| 地方法院 | 17,122,239 |
-| 地方法院簡易庭 | 3,333,452 |
-| 高等法院及分院 | 1,358,962 |
-| 最高法院 | 406,042 |
-| 高等行政法院 | 203,176 |
-| 最高行政法院 | 124,350 |
-| 地方行政訴訟庭 | 93,870 |
-| 高雄少年及家事法院 | 25,279 |
-| 智慧財產及商業法院 | 24,131 |
-| 其他專業法庭・委員會 | 33,392 |
-| **合計** | **22,724,893** |
+| 地方法院 | 17,125,227 |
+| 地方法院簡易庭 | 3,334,066 |
+| 高等法院及分院 | 1,359,214 |
+| 最高法院 | 406,117 |
+| 高等行政法院 | 203,198 |
+| 最高行政法院 | 124,354 |
+| 地方行政訴訟庭 | 93,970 |
+| 高雄少年及家事法院 | 25,313 |
+| 智慧財產及商業法院 | 24,132 |
+| 其他專業法庭・委員會 | 33,454 |
+| **合計** | **22,729,045** |
 
 | 案件類別 | 筆數 |
 |---|---:|
-| 民事 | 14,579,795 |
-| 刑事 | 7,526,721 |
-| 行政 | 592,749 |
-| 其他 | 25,628 |
+| 民事 | 14,582,169 |
+| 刑事 | 7,528,313 |
+| 行政 | 592,875 |
+| 其他 | 25,688 |
 
-### Administrative rules by issuing agency (93 agencies, as of 2026-10-20)
+### Administrative rules by issuing agency (107 agencies, as of 2026-10-21)
 
 Agency names are kept in their official Chinese form as recorded on each
 interpretation, including historical names of reorganized agencies.
 
 | Agency | Count |
 |---|---:|
-| 財政部 | 10,661 |
+| 財政部 | 10,704 |
 | 內政部國土管理署 | 8,769 |
 | 金管會 | 8,392 |
 | 經濟部智慧財產局 | 7,185 |
 | 勞動部 | 7,179 |
-| 法務部 | 7,096 |
-| 經濟部 | 6,677 |
-| 行政院環境保護署 | 4,463 |
+| 法務部 | 7,105 |
+| 內政部 | 6,744 |
+| 經濟部 | 6,683 |
+| 行政院環境保護署 | 4,467 |
 | 行政院公共工程委員會 | 4,104 |
-| 銓敘部 | 4,008 |
+| 銓敘部 | 4,009 |
 | 考試院 | 3,382 |
 | 農業部 | 3,088 |
 | 教育部 | 2,912 |
-| 內政部 | 2,667 |
-| 文化部 | 1,517 |
+| 文化部 | 1,519 |
 | 前司法行政部 | 1,432 |
 | 法務部行政執行署 | 1,417 |
 | 內政部戶政司 | 1,391 |
-| 環境部 | 1,119 |
+| 環境部 | 1,121 |
 | 主計總處 | 721 |
 | 公務人員保障暨培訓委員會 | 690 |
 | 國科會 | 574 |
 | 文化部文化資產局 | 561 |
 | 農業部水保署 | 543 |
-| 司法行政部 | 440 |
+| 司法行政部 | 444 |
 | 考選部 | 429 |
 | 人事行政總處 | 323 |
+| 行政院消費者保護處 | 269 |
 | 核能安全委員會 | 228 |
-| 原住民族委員會 | 226 |
+| 原住民族委員會 | 227 |
+| 行政院 | 227 |
 | 海洋委員會 | 224 |
-| 公平交易委員會 | 204 |
+| 公平交易委員會 | 205 |
 | 僑務委員會 | 184 |
 | 法務部矯正署 | 170 |
-| 外交部 | 134 |
+| 外交部 | 135 |
 | 中央選舉委員會 | 112 |
 | 農業部林業及自然保育署 | 103 |
 | 客家委員會 | 97 |
 | 國家發展委員會 | 86 |
 | 個人資料保護委員會籌備處 | 74 |
 | 故宮博物院 | 59 |
+| 司法院 | 56 |
 | 大陸委員會 | 52 |
-| 司法院 | 43 |
 | 臺灣高等法院檢察署 | 41 |
 | 法務部政風司 | 37 |
 | 法務部廉政署 | 32 |
 | 經濟部能源署 | 28 |
 | 法務部調查局 | 20 |
-| Other 46 agencies (each under 20) | 104 |
-| **合計** | **93,998** |
+| Other 58 agencies (each under 20) | 120 |
+| **合計** | **98,674** |
 
 
 ## Why it is different
@@ -132,7 +134,7 @@ interpretation, including historical names of reorganized agencies.
 This is not a generic keyword judgment search tool. It connects to the TLR
 retrieval service that Legal Detective has been building for a long time:
 
-- **22,724,893** Taiwan court decisions (as of 2026-10-20), structurally
+- **22,729,045** Taiwan court decisions (as of 2026-10-21), structurally
   processed and vectorized.
 - **Semantic fuzzy search**: natural-language queries find judgments that are
   "conceptually similar but worded differently"; lexical exact-match modes are

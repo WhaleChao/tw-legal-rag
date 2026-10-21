@@ -1,5 +1,26 @@
 # Changelog
 
+## Data coverage update (2026-10-21)
+
+Documentation-only change; no package release (CLI still v2.3.1).
+
+- **Court judgments: 22,724,893 to 22,729,045** (+4,152). Court-level rows: 地方法院 17,125,227,
+  地方法院簡易庭 3,334,066, 高等法院及分院 1,359,214, 最高法院 406,117,
+  高等行政法院 203,198, 最高行政法院 124,354, 地方行政訴訟庭 93,970,
+  高雄少年及家事法院 25,313, 智慧財產及商業法院 24,132,
+  其他專業法庭・委員會 33,454. Case-type rows: 民事 14,582,169, 刑事 7,528,313,
+  行政 592,875, 其他 25,688.
+- **Administrative rules and interpretations: 103,091 to 107,767; issuing agencies 93 to 107.**
+  Two interpretation collections were added: the Ministry of the Interior land-administration
+  interpretation compilation (內政部 2,667 to 6,744; letters issued by other agencies and
+  reproduced in that compilation are counted under their own issuing agency), and the Executive Yuan
+  consumer-protection interpretations (行政院消費者保護處, new agency row, 269).
+  Other rows that moved: 財政部 10,704, 法務部 7,105, 經濟部 6,683, 行政院環境保護署 4,467, 銓敘部 4,009,
+  文化部 1,519, 環境部 1,121, 司法行政部 444, 行政院 227 (new row), 外交部 135, 司法院 56.
+  Agencies with fewer than 20 entries: 46 agencies (104) to 58 agencies (120).
+- **Appeal-chain relations: 4,371,339 to 4,375,506.** Interpretation validity ledger unchanged at
+  80,470; acts, regulations, repealed instruments and labour arbitration decisions unchanged.
+
 ## Data coverage update (2026-10-20)
 
 Documentation-only change; no package release (CLI still v2.3.1).
