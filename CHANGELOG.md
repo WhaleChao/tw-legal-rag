@@ -1,5 +1,21 @@
 # Changelog
 
+## Data coverage update (2026-10-27)
+
+Documentation-only change; no package release (CLI still v2.3.1).
+
+- **Court judgments: 22,729,045 to 22,747,053** (+18,008). Court-level rows: 地方法院 17,139,047,
+  地方法院簡易庭 3,336,358, 高等法院及分院 1,360,144, 最高法院 406,325,
+  高等行政法院 203,269, 最高行政法院 124,391, 地方行政訴訟庭 94,460,
+  高雄少年及家事法院 25,442, 智慧財產及商業法院 24,158,
+  其他專業法庭・委員會 33,459. Case-type rows: 民事 14,593,554, 刑事 7,534,335,
+  行政 593,475, 其他 25,689.
+- **Administrative rules and interpretations: 107,767 to 107,771; issuing agencies unchanged at 107.**
+  Rows that moved: 內政部 6,745, 經濟部 6,684, 農業部 3,089, 核能安全委員會 229.
+  Agencies with fewer than 20 entries unchanged: 58 agencies, 120 entries.
+- **Appeal-chain relations: 4,375,506 to 4,378,841. Interpretation validity ledger: 80,470 to 84,831.**
+  Acts, regulations, repealed instruments, constitutional decisions and labour arbitration decisions unchanged.
+
 ## Data coverage update (2026-10-21)
 
 Documentation-only change; no package release (CLI still v2.3.1).
