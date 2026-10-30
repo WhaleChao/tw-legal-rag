@@ -10,7 +10,7 @@
 
 ---
 
-> **免費、免註冊、免 API key** 的台灣法律 MCP 伺服器：在 Claude、ChatGPT、Gemini CLI、Microsoft 365 Copilot、Codex、Cursor 加入
+> **免費、免 API key，連接時登入法律偵探帳號** 的台灣法律 MCP 伺服器：在 Claude、ChatGPT、Gemini CLI、Microsoft 365 Copilot、Codex、Cursor 加入
 > `https://tlr.dr-legal.com.tw/mcp` 一個網址，AI 助理就能直接語義檢索 2,275 萬筆台灣裁判書、
 > 行政函釋與憲法法庭裁判，逐筆附引用查核。另提供同一後端的公開原始碼 CLI（`twlegalrag`）。
 >
@@ -281,7 +281,7 @@ SELF-CHECK),要求下游模型在作答後逐一回頭核對:(a) 歸給某判決
 
 ```bash
 export TWLEGALRAG_TLR_BASE_URL=https://tlr.dr-legal.com.tw   # 預設
-export TWLEGALRAG_TLR_API_KEY=...   # 選用；公開端點不需要，僅限服務方另行核發的企業金鑰
+export TWLEGALRAG_TLR_API_KEY=...   # 2026-10-30 起 REST 必須帶憑證：向 info@dr-legal.com.tw 申請的機構金鑰，或自行以 OAuth 取得的 access token
 ```
 
 ```toml
@@ -298,8 +298,8 @@ export TWLEGALRAG_TLR_API_KEY=...   # 選用；公開端點不需要，僅限服
   回答**,全部發生在你與你的 AI provider 之間,**從不經過** TLR。TLR 是 retrieval-only
   伺服器,唯一收到的是你的 AI client 決定送出的**檢索 query 字串**與後續調閱的
   判決編號。
-- **不需要註冊帳號**：公開 REST 端點免金鑰即可使用,本服務沒有使用者帳號系統,
-  查詢不與任何帳號身分綁定。
+- **連接時登入帳號**：2026 年 10 月 30 日起，MCP 授權需登入法律偵探帳號（Google 或 email，免費註冊），
+  查詢記錄會綁定該帳號，用於識別使用者與統計用量；REST 端點需帶機構金鑰或 OAuth access token，匿名請求回 401。
 - 判決資料本身是台灣**公開**裁判書,查詢回傳的內容不含非公開個資。
 
 其餘請務必理解的網路傳輸：

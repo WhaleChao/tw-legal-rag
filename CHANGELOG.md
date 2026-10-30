@@ -1,5 +1,20 @@
 # Changelog
 
+## Access change (2026-10-30)
+
+Service-side change; no package release (CLI still v2.3.1).
+
+- **MCP authorization now requires signing in to a Dr.Legal account** (Google or email; free registration).
+  Existing connections keep working until their current authorization expires (at most 30 days); the tool
+  then shows the sign-in page once. Active connections stay signed in; 30 days of inactivity require
+  signing in again.
+- **The public REST endpoint no longer accepts anonymous requests.** Send a Bearer credential: an
+  institutional API key (request by email at info@dr-legal.com.tw) or an OAuth access token obtained with
+  the authorization-code + PKCE flow against `https://tlr.dr-legal.com.tw`. Anonymous requests receive
+  HTTP 401 with instructions in the body. For the CLI set `TWLEGALRAG_TLR_API_KEY`.
+- Health check and OAuth discovery endpoints remain public. Terms and privacy notice: dr-legal.com.tw/tlr-terms,
+  dr-legal.com.tw/tlr-privacy.
+
 ## Data coverage update (2026-10-27)
 
 Documentation-only change; no package release (CLI still v2.3.1).

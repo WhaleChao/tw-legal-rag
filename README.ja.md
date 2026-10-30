@@ -10,7 +10,7 @@
 
 ---
 
-> **無料・登録不要・API キー不要**の台湾法律 **MCP サーバー**：Claude、ChatGPT、Gemini CLI、Microsoft 365 Copilot、Codex、Cursor に
+> **無料・API キー不要、接続時に Dr.Legal アカウントでログイン**の台湾法律 **MCP サーバー**：Claude、ChatGPT、Gemini CLI、Microsoft 365 Copilot、Codex、Cursor に
 > `https://tlr.dr-legal.com.tw/mcp` を追加するだけで、AI アシスタントが 2,275 万件の台湾裁判書・
 > 行政解釈・憲法法廷判決をセマンティック検索し、引用チェック付きで返します。
 > 同じバックエンドに接続するソースコード公開 CLI（`twlegalrag`）も提供。
@@ -268,14 +268,14 @@ v1.1 以降、`verification_instructions` には**見解レイヤーのセルフ
 
 ## 設定（任意）
 
-デフォルトで公開エンドポイント `https://tlr.dr-legal.com.tw` に接続し、キー不要で
-使えます。サービス側から API キーを発行された場合は、環境変数または
+デフォルトで公開エンドポイント `https://tlr.dr-legal.com.tw` に接続します。2026 年 10 月 30 日以降、
+REST には資格情報が必要です。サービス側から発行された API キーは、環境変数または
 `~/.twlegalrag/config.toml`（git-ignore 済み。**絶対に** commit しないこと）に
 設定します：
 
 ```bash
 export TWLEGALRAG_TLR_BASE_URL=https://tlr.dr-legal.com.tw   # デフォルト
-export TWLEGALRAG_TLR_API_KEY=...   # 任意；公開エンドポイントには不要（企業向けキーのみ）
+export TWLEGALRAG_TLR_API_KEY=...   # 2026-10-30 以降必須：info@dr-legal.com.tw に申請した機関キー、または自分で OAuth 取得した access token
 ```
 
 ```toml
@@ -293,9 +293,9 @@ export TWLEGALRAG_TLR_API_KEY=...   # 任意；公開エンドポイントには
   **一切経由しません**。TLR は retrieval-only のサーバーであり、受け取るのは
   あなたの AI クライアントが送信を決めた**検索クエリ文字列**と、その後の判決文書の
   取得リクエストだけです。
-- **アカウント登録不要**：公開 REST エンドポイントはキーなしで使え、本サービスに
-  ユーザーアカウントの仕組みはなく、クエリはいかなるアカウント身元にも
-  紐付きません。
+- **接続時にアカウントでログイン**：2026 年 10 月 30 日以降、MCP 認可には Dr.Legal アカウント（Google または
+  メール、登録無料）でのログインが必要で、クエリはそのアカウントに紐付きます（利用者識別と利用統計のため）。
+  REST エンドポイントは機関キーまたは OAuth access token が必要で、匿名リクエストは 401 を返します。
 - 判決データ自体は台湾の**公開**裁判文書であり、レスポンスに非公開の個人情報は
   含まれません。
 
@@ -342,7 +342,7 @@ CLI **v2.1.0** も対応：`pack` が長文判決を最後までページング�
 `tlr.dr-legal.com.tw` は、**Remote MCP** 経由で判決検索を AI ツールに直接組み込む
 こともできます。いずれも同じ MCP エンドポイント
 `https://tlr.dr-legal.com.tw/mcp` を設定し、接続時に OAuth が自動完了します
-（動的登録、API キーの申請・設定は不要）：
+（動的登録、API キー不要。認可の途中で Dr.Legal アカウントにログインします）：
 
 - **Claude（Remote MCP）**：Settings → Connectors → Add custom connector で
   URL に `https://tlr.dr-legal.com.tw/mcp` を設定。
@@ -351,7 +351,7 @@ CLI **v2.1.0** も対応：`pack` が長文判決を最後までページング�
 - **Gemini ウェブ版（Spark）**：[gemini.google.com/spark/apps](https://gemini.google.com/spark/apps)
   を開き、カスタムアプリのタブで「Spark 適用のカスタムアプリ」に
   `https://tlr.dr-legal.com.tw/mcp` を貼り付けて「続行」、画面に従って認可を
-  完了します（自動の動的登録、キー不要）。アカウントに Gemini Spark が必要です。
+  完了します（自動の動的登録、キー不要。途中で Dr.Legal アカウントにログイン）。アカウントに Gemini Spark が必要です。
   連携後は Spark の入力欄で `@` を入力してアプリを選ぶと名指しで呼び出せます
   （通常のチャット画面ではカスタムアプリは呼び出されません）。
   2026-09-01 台湾アカウントで動作確認済み。

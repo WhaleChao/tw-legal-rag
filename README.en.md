@@ -12,7 +12,7 @@ Author: Aaron Huang (黃思齊), attorney-at-law, founder of [Dr.Legal / 法律�
 
 ---
 
-> **Free, no signup, no API key.** A Taiwan legal **MCP server**: add one URL
+> **Free, no API key; sign in to a Dr.Legal account when connecting.** A Taiwan legal **MCP server**: add one URL
 > (`https://tlr.dr-legal.com.tw/mcp`) to Claude, ChatGPT, Gemini CLI, Microsoft 365 Copilot, Codex or Cursor and your AI
 > assistant can semantically search 22M+ Taiwan court judgments, administrative
 > interpretations and Constitutional Court decisions, each with a citation check.
@@ -319,9 +319,10 @@ First, what **never** passes through the TLR server:
   and your AI provider and **never** pass through TLR. TLR is a retrieval-only
   server; the only things it receives are the **retrieval query strings** your
   AI client decides to send and the subsequent judgment-document requests.
-- **No account registration**: the public REST endpoint works without a key,
-  the service has no user account system, and queries are not tied to any
-  account identity.
+- **Account sign-in on connection**: since 30 October 2026, MCP authorization requires signing in to a
+  Dr.Legal account (Google or email; free registration). Queries are tied to that account for user
+  identification and usage statistics. The REST endpoint requires an institutional key or an OAuth
+  access token; anonymous requests receive 401.
 - The judgment data itself consists of Taiwan's **publicly available** court
   decisions; responses contain no non-public personal data.
 
@@ -375,7 +376,7 @@ This CLI is one way to use the TLR retrieval service. The same backend
 `tlr.dr-legal.com.tw` also supports plugging judgment search directly into your
 AI tools via **Remote MCP**. Both use the same MCP endpoint
 `https://tlr.dr-legal.com.tw/mcp`; OAuth completes automatically on connection
-(dynamic registration, no API key application or setup needed):
+(dynamic registration, no API key; you sign in to a Dr.Legal account during authorization):
 
 - **Claude (Remote MCP)**: Settings → Connectors → Add custom connector, URL
   `https://tlr.dr-legal.com.tw/mcp`.
