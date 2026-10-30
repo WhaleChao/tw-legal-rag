@@ -283,6 +283,8 @@ SELF-CHECK),要求下游模型在作答後逐一回頭核對:(a) 歸給某判決
 export TWLEGALRAG_TLR_BASE_URL=https://tlr.dr-legal.com.tw   # 預設
 export TWLEGALRAG_TLR_API_KEY=...   # 2026-10-30 起 REST 必須帶憑證：向 info@dr-legal.com.tw 申請的機構金鑰，或自行以 OAuth 取得的 access token
 ```
+沒有機構金鑰、想在自己的程式裡直接呼叫 REST：走 OAuth 授權碼加 PKCE 流程登入一次（會開瀏覽器進法律偵探登入頁），之後以 refresh token 自動續期，持續使用不必重登。可直接用純標準函式庫的範例 [docs/tlr_oauth_cli.py](docs/tlr_oauth_cli.py)：`python3 docs/tlr_oauth_cli.py login`，然後 `python3 docs/tlr_oauth_cli.py law 民法 184`。範例會把 token 存在 `~/.twlegalrag/tlr_oauth.json`（權限 600）。注意：請求要帶能辨識程式的 User-Agent，預設的 `Python-urllib` 會被邊緣防護擋下。
+
 
 ```toml
 [tlr]

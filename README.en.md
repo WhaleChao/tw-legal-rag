@@ -303,6 +303,8 @@ commit it):
 export TWLEGALRAG_TLR_BASE_URL=https://tlr.dr-legal.com.tw   # default
 export TWLEGALRAG_TLR_API_KEY=...   # optional; NOT needed for the public endpoint (enterprise keys only)
 ```
+No institutional key but want to call REST from your own code? Sign in once with the OAuth authorization-code + PKCE flow (a browser opens on the Dr.Legal sign-in page), then the refresh token keeps the session alive while you keep using it. A standard-library-only example is in [docs/tlr_oauth_cli.py](docs/tlr_oauth_cli.py): `python3 docs/tlr_oauth_cli.py login`, then `python3 docs/tlr_oauth_cli.py law 民法 184`. Tokens are stored in `~/.twlegalrag/tlr_oauth.json` (mode 600). Send an identifying User-Agent; the default `Python-urllib` is blocked at the edge.
+
 
 ```toml
 [tlr]

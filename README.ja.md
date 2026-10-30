@@ -277,6 +277,8 @@ REST には資格情報が必要です。サービス側から発行された AP
 export TWLEGALRAG_TLR_BASE_URL=https://tlr.dr-legal.com.tw   # デフォルト
 export TWLEGALRAG_TLR_API_KEY=...   # 2026-10-30 以降必須：info@dr-legal.com.tw に申請した機関キー、または自分で OAuth 取得した access token
 ```
+機関キーがなく自分のプログラムから REST を呼びたい場合：OAuth 認可コード＋PKCE フローで一度ログインし（ブラウザで Dr.Legal のログインページが開きます）、以後は refresh token で自動更新されるので使い続ける限り再ログインは不要です。標準ライブラリのみの例が [docs/tlr_oauth_cli.py](docs/tlr_oauth_cli.py) にあります：`python3 docs/tlr_oauth_cli.py login` のあと `python3 docs/tlr_oauth_cli.py law 民法 184`。トークンは `~/.twlegalrag/tlr_oauth.json`（パーミッション 600）に保存されます。識別できる User-Agent を付けてください。既定の `Python-urllib` はエッジで遮断されます。
+
 
 ```toml
 [tlr]

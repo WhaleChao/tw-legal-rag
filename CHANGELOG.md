@@ -11,7 +11,8 @@ Service-side change; no package release (CLI still v2.3.1).
 - **The public REST endpoint no longer accepts anonymous requests.** Send a Bearer credential: an
   institutional API key (request by email at info@dr-legal.com.tw) or an OAuth access token obtained with
   the authorization-code + PKCE flow against `https://tlr.dr-legal.com.tw`. Anonymous requests receive
-  HTTP 401 with instructions in the body. For the CLI set `TWLEGALRAG_TLR_API_KEY`.
+  HTTP 401 with instructions in the body. For the CLI set `TWLEGALRAG_TLR_API_KEY`. A standard-library
+  OAuth example for your own scripts is in `docs/tlr_oauth_cli.py`.
 - Health check and OAuth discovery endpoints remain public. Terms and privacy notice: dr-legal.com.tw/tlr-terms,
   dr-legal.com.tw/tlr-privacy.
 
