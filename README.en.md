@@ -25,12 +25,12 @@ guarantee semantic faithfulness of third-party model outputs. Its built-in
 citation check only verifies whether cited judgments belong to the retrieved
 bundle.
 
-## Data coverage (as of 2026-10-27, counted directly from the production database)
+## Data coverage (as of 2026-10-30, counted directly from the production database)
 
 | Corpus | Size | Access |
 |---|---:|---|
-| **Court judgments** (all Taiwan court levels) | **22,747,053** | semantic + lexical search + exact docket lookup; daily incremental sync from Judicial Yuan open data, including post-publication corrections and takedowns |
-| Appeal-chain relations | 4,378,841 | attached as `case_history` per judgment, with 主文 "廢棄/駁回" flags |
+| **Court judgments** (all Taiwan court levels) | **22,761,622** | semantic + lexical search + exact docket lookup; daily incremental sync from Judicial Yuan open data, including post-publication corrections and takedowns |
+| Appeal-chain relations | 4,380,929 | attached as `case_history` per judgment, with 主文 "廢棄/駁回" flags |
 | Administrative rules / interpretations (行政規則・函釋) | 107,771 | exact serial lookup + semantic search (hosted MCP); 107 issuing agencies, per-agency detail below |
 | Judicial Yuan Grand Justices interpretations (大法官解釋) | 813 | same as above |
 | Constitutional Court judgments (憲判字) | 59 | same as above |
@@ -39,7 +39,7 @@ bundle.
 | Labour arbitration decisions (勞動部裁決委員會) | 465 | surfaced alongside labour queries, explicitly labelled as non-court decisions |
 | Constitutional-tier instruments (憲法位階) | 7 | 228 articles: the Constitution, its additional articles, the implementation procedure and the martial-law orders. Searchable on [dr-legal.com.tw](https://dr-legal.com.tw) |
 | Acts (法律) | 1,022 / 44,503 articles | Named 法/律/條例/通則 per Central Regulation Standard Act §2. Same as above |
-| Regulations (命令) | 7,253 / 128,738 articles | Named 規程/規則/細則/辦法/綱要/標準/準則 per §3. Same as above |
+| Regulations (命令) | 7,254 / 128,745 articles | Named 規程/規則/細則/辦法/綱要/標準/準則 per §3. Same as above |
 | Repealed instruments | 3,526 | 320 acts, 3,204 regulations, plus constitutional-tier norms such as the Temporary Provisions; flagged as repealed for historical research |
 
 Judgments sync daily (Judicial Yuan open data lags publication by a few days;
@@ -50,26 +50,26 @@ directly from the production database on the stated date, not estimates.
 
 | 法院層級 | 筆數 |
 |---|---:|
-| 地方法院 | 17,139,047 |
-| 地方法院簡易庭 | 3,336,358 |
-| 高等法院及分院 | 1,360,144 |
-| 最高法院 | 406,325 |
-| 高等行政法院 | 203,269 |
-| 最高行政法院 | 124,391 |
-| 地方行政訴訟庭 | 94,460 |
-| 高雄少年及家事法院 | 25,442 |
-| 智慧財產及商業法院 | 24,158 |
-| 其他專業法庭・委員會 | 33,459 |
-| **合計** | **22,747,053** |
+| 地方法院 | 17,150,511 |
+| 地方法院簡易庭 | 3,337,915 |
+| 高等法院及分院 | 1,361,004 |
+| 最高法院 | 406,427 |
+| 高等行政法院 | 203,338 |
+| 最高行政法院 | 124,401 |
+| 地方行政訴訟庭 | 94,843 |
+| 高雄少年及家事法院 | 25,542 |
+| 智慧財產及商業法院 | 24,167 |
+| 其他專業法庭・委員會 | 33,474 |
+| **合計** | **22,761,622** |
 
 | 案件類別 | 筆數 |
 |---|---:|
-| 民事 | 14,593,554 |
-| 刑事 | 7,534,335 |
-| 行政 | 593,475 |
-| 其他 | 25,689 |
+| 民事 | 14,602,694 |
+| 刑事 | 7,539,285 |
+| 行政 | 593,939 |
+| 其他 | 25,704 |
 
-### Administrative rules by issuing agency (107 agencies, as of 2026-10-27)
+### Administrative rules by issuing agency (107 agencies, as of 2026-10-30)
 
 Agency names are kept in their official Chinese form as recorded on each
 interpretation, including historical names of reorganized agencies.
@@ -134,7 +134,7 @@ interpretation, including historical names of reorganized agencies.
 This is not a generic keyword judgment search tool. It connects to the TLR
 retrieval service that Legal Detective has been building for a long time:
 
-- **22,747,053** Taiwan court decisions (as of 2026-10-27), structurally
+- **22,761,622** Taiwan court decisions (as of 2026-10-30), structurally
   processed and vectorized.
 - **Semantic fuzzy search**: natural-language queries find judgments that are
   "conceptually similar but worded differently"; lexical exact-match modes are

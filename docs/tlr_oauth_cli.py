@@ -7,6 +7,7 @@ access token 一小時過期，用 refresh token 換新的；持續使用不必�
 
 用法：
   python3 tlr_oauth_cli.py login            # 第一次：開瀏覽器登入
+  python3 tlr_oauth_cli.py login --device   # 無瀏覽器的機器（SSH、伺服器）：印一組短碼，到手機或電腦的瀏覽器核准
   python3 tlr_oauth_cli.py law 民法 184      # 之後：直接查，token 自動更新
   python3 tlr_oauth_cli.py search "租賃押金返還"
   加 --no-browser 只印網址，自己貼到瀏覽器。
@@ -109,6 +110,44 @@ def login(open_browser=True):
     return store
 
 
+def login_device():
+    """裝置授權（RFC 8628）：不需要本機瀏覽器與回呼埠。終端機印出短碼與網址，使用者在任何裝置登入法律偵探後輸入短碼。"""
+    meta = _get(f"{BASE}/.well-known/oauth-authorization-server")
+    store = _load()
+    if not store.get("client_id"):
+        st, reg = _post(meta["registration_endpoint"], {
+            "client_name": CLIENT_NAME, "redirect_uris": ["http://127.0.0.1:1/callback"],
+            "grant_types": ["urn:ietf:params:oauth:grant-type:device_code", "refresh_token"],
+            "response_types": ["code"], "token_endpoint_auth_method": "none", "scope": "judgments:read"})
+        if st != 201:
+            sys.exit(f"client 註冊失敗 {st}: {reg}")
+        store = {"client_id": reg["client_id"]}
+        _save(store)
+    st, d = _post(meta["device_authorization_endpoint"], {"client_id": store["client_id"], "scope": "judgments:read",
+                                                          "resource": f"{BASE}/mcp"}, form=True)
+    if st != 200:
+        sys.exit(f"裝置授權申請失敗 {st}: {d}")
+    print(f"\n請用手機或電腦開啟：{d['verification_uri_complete']}\n登入法律偵探後確認代碼為 {d['user_code']}，再按核准。\n（{d['expires_in'] // 60} 分鐘內有效）\n", file=sys.stderr)
+    interval = int(d.get("interval", 5)); deadline = time.time() + int(d.get("expires_in", 900))
+    while time.time() < deadline:
+        time.sleep(interval)
+        st, tok = _post(meta["token_endpoint"], {"grant_type": "urn:ietf:params:oauth:grant-type:device_code",
+                                                 "device_code": d["device_code"], "client_id": store["client_id"]}, form=True)
+        if st == 200:
+            store.update({"access_token": tok["access_token"], "refresh_token": tok["refresh_token"],
+                          "expires_at": int(time.time()) + int(tok.get("expires_in", 3600)), "token_endpoint": meta["token_endpoint"]})
+            _save(store)
+            print("登入完成，token 已存到", STORE, file=sys.stderr)
+            return store
+        err = tok.get("error")
+        if err == "authorization_pending":
+            continue
+        if err == "slow_down":
+            interval += 5; continue
+        sys.exit(f"裝置授權失敗：{err}（{tok.get('error_description', '')}）")
+    sys.exit("等待核准逾時，請重新執行 login --device")
+
+
 class _Handler(http.server.BaseHTTPRequestHandler):
     result = None
 
@@ -128,7 +167,7 @@ class _Handler(http.server.BaseHTTPRequestHandler):
 def access_token():
     s = _load()
     if not s.get("refresh_token"):
-        return login()["access_token"]
+        return (login_device() if not sys.stdout.isatty() or os.environ.get("TLR_DEVICE_LOGIN") else login())["access_token"]
     if s.get("expires_at", 0) - time.time() > 60:
         return s["access_token"]
     st, tok = _post(s["token_endpoint"], {"grant_type": "refresh_token", "refresh_token": s["refresh_token"],
@@ -149,10 +188,11 @@ def call(path, payload):
 if __name__ == "__main__":
     args = sys.argv[1:]
     nb = "--no-browser" in args
-    args = [a for a in args if a != "--no-browser"]
+    dev = "--device" in args
+    args = [a for a in args if a not in ("--no-browser", "--device")]
     cmd = args[0] if args else "login"
     if cmd == "login":
-        login(open_browser=not nb)
+        login_device() if dev else login(open_browser=not nb)
     elif cmd == "law":
         print(json.dumps(call("/v1/law_article", {"law_name": args[1], "article_no": args[2]})[1], ensure_ascii=False, indent=1)[:1500])
     elif cmd == "search":
